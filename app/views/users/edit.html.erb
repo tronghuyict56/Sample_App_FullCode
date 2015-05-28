@@ -1,0 +1,45 @@
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :birthday %>
+      <%= f.date_field :birthday, class: 'form-control' %>
+
+      <%= f.label :telephone %>
+      <%= f.telephone_field :telephone, class: 'form-control' %> 
+      
+      <%= f.label :country %>
+      <%= f.text_field :country, class: 'form-control' %> 
+
+      <%= f.label :identify_number %>
+      <%= f.text_field :inumber, class: 'form-control' %> 
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <% if !current_user.avatar.blank? %>
+        <%= link_to image_tag(current_user.avatar, alt: "User avatar"), current_user %>
+      <% else %>
+        <%= link_to image_tag('avatar_default.jpg', alt: "User avatar"), current_user %>
+      <% end %>
+      <span class="picture">
+        <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
+      </span>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+     <% end %>
+  </div>
+</div>
+
